@@ -1,15 +1,17 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:squid/presentation/home/home.dart';
 
-class SquidGameHome extends StatefulWidget {
-  const SquidGameHome({super.key});
+class IntroScreen extends StatefulWidget {
+  const IntroScreen({super.key});
 
   @override
-  State<SquidGameHome> createState() => _SquidGameHomeState();
+  State<IntroScreen> createState() => _IntroScreenState();
 }
 
-class _SquidGameHomeState extends State<SquidGameHome> {
+class _IntroScreenState extends State<IntroScreen> {
   bool transition = false;
 
   startTimeout() {
@@ -38,7 +40,7 @@ class _SquidGameHomeState extends State<SquidGameHome> {
         child: Stack(
           children: [
             Positioned(
-              top: -200, // Move the image up by 100 pixels
+              top: -200,
               left: 0,
               right: 0,
               bottom: 0,
@@ -60,6 +62,30 @@ class _SquidGameHomeState extends State<SquidGameHome> {
                 child: Lottie.asset('assets/lottie/lf30_editor_c8c9sumf.json'),
               ),
             ),
+            Positioned(
+                bottom: 10,
+                right: 10,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(CupertinoPageRoute(builder: (context) =>  HomeScreen()));
+                  },
+                  child: Row(
+                    children: [
+                      const Text(
+                        "START",
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 18),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Icon(
+                        Icons.arrow_right_alt_outlined,
+                        color: Colors.white,
+                      ),
+                      SizedBox(height: 66, child: Lottie.asset('assets/lottie/animation_employee.json')),
+                    ],
+                  ),
+                ))
           ],
         ),
       ),
